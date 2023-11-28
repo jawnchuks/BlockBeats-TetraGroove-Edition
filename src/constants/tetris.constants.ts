@@ -371,6 +371,7 @@ export const SCORES = {
   3: 500,
   4: 800,
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 } as { [key in any]: number };
 
 export const PROGRESS_BY_CLEARS = {

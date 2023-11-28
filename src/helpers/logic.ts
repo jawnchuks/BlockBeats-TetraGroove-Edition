@@ -12,6 +12,7 @@ export const getInitialGameState = (): GameState => {
   const firstTetromino = ALL_TETROMINOS[0];
   return {
     started: false,
+    paused: false,
     gameOver: false,
     level: 1,
     scoreId: null,
@@ -269,7 +270,7 @@ export const clearLines = (gameState: GameState): GameState => {
     )
     .concat(
       placedTetrominos.filter(
-        (row, rowIndex) => !clearedLines.includes(rowIndex)
+        (_row, rowIndex) => !clearedLines.includes(rowIndex)
       )
     ) as Board;
 
