@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+:root {
+  font-family: 'Play', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+
+body {
+  margin: 0;
+  display: flexbox;
+  box-sizing: border-box;
+  place-items: center;
+  min-width: 320px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+/* Set component styles */
+.set {
+  overflow: hidden;
+  /* padding: 30px; */
+  text-align: center;
+}
+
+.set .d-pad {
+  /* margin-right: 40px; */
+}
+
+.set .d-pad,
+.set .o-pad {
+  /* display: inline-block; */
+}
+
+/* Dark mode */
+.dark .d-pad a {
+  border-radius: 35%;
+}
+
+.dark .d-pad:before,
+.dark .d-pad a {
+  background: #111;
+}
+
+/* Pink mode */
+.pink .d-pad:before,
+.pink .d-pad a {
+  background: #ff1285;
+}
+
+.pink .d-pad a:after {
+  border-radius: 30%;
+}
+
+/* Clear mode */
+.clear .d-pad {
+  border-radius: 0;
+}
+
+.clear .d-pad a {
+  border: 1px solid #fff;
+}
+
+/* Outline mode */
+.outline .d-pad {
+  border-radius: 0;
+}
+
+.outline .d-pad a {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Blue mode */
+.blue .d-pad:before,
+.blue .d-pad a {
+  background: #1843ca;
+}
+
+.blue .d-pad:after {
+  background: #ccc;
+}
+
+/* Set background white mode */
+.setbg.white .d-pad:before,
+.setbg.white .d-pad a {
+  background: #fff;
+}
+
+.setbg.white .d-pad:after {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Wire mode */
+.wire .d-pad {
+  overflow: initial;
+  border: 1px dashed #93b4ff;
+}
+
+.wire .d-pad a:after {
+  border: 1px dashed #93b4ff;
+}
+
