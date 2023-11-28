@@ -62,7 +62,7 @@ const GameScreen = () => {
                       key={`next-tetromino-row-${rowIndex}`}
                       className=" w-[1.2rem] aspect-square relative"
                     >
-                      {row.map((col, colIndex) => (
+                      {row.map((_col, colIndex) => (
                         <div
                           key={`next-tetromino-cell-${rowIndex}-${colIndex}`}
                           className="flex aspect-square mx-auto"
