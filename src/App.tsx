@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+//@ts-expect-error any
+import useSound from "use-sound";
+import Sound from "react-sound";
 import GameContainer from "./components/layout/GameContainer";
 import GameScreen from "./components/layout/GameScreen";
 import Intro from "./components/ui/Intro";
@@ -18,7 +21,57 @@ function App() {
   const MOVE_COOLDOWN = 200;
 
   const gameState = useTetris();
-  const { rotate, move, start, fastDrop, hardDrop, resume } = useTetrisActions();
+  const { rotate, move, start, fastDrop, hardDrop, resume, registerCallback } = useTetrisActions();
+
+  // ----------------------------------------------------------------------------------------------------------------------
+
+  const [playMoveSFX] = useSound("/sounds/move.wav", { volume: 1 });
+  // const [playRotateSFX] = useSound("/sfx/rotate.wav", { volume: 1 });
+  // const [playPlaceSFX] = useSound("/sfx/place.wav", { volume: 1 });
+  const [playHardDropSFX] = useSound("/sounds/hard-drop.wav", { volume: 1 });
+  const [playLineClearSFX] = useSound("/sounds/clear-line.wav", { volume: 1 });
+  const [playGameOverSFX] = useSound("/sounds/game-over.wav", { volume: 1 });
+  // const [playSRSTrickSFX] = useSound("/sfx/srs-trick.wav", { volume: 1 });
+  // const [playTetrisSFX] = useSound("/sfx/tetris.wav", { volume: 1 });
+
+
+  useEffect(() => {
+    registerCallback("onMove", () => {
+      playMoveSFX();
+    });
+    // registerCallback("onRotate", () => {
+    //   playRotateSFX();
+    // });
+    registerCallback("onHardDrop", () => {
+      playHardDropSFX();
+    });
+    // registerCallback("onPlace", () => {
+    //   playPlaceSFX();
+    // });
+    registerCallback("onClear", () => {
+      playLineClearSFX();
+    });
+    registerCallback("onGameOver", () => {
+      playGameOverSFX();
+    });
+    // registerCallback("onSRSTrick", () => {
+    //   playSRSTrickSFX();
+    // });
+    // registerCallback("onTetris", () => {
+    //   playTetrisSFX();
+    // });
+  }, [
+    registerCallback,
+    playHardDropSFX,
+    playMoveSFX,
+    // playRotateSFX,
+    playLineClearSFX,
+    playGameOverSFX,
+    // playSRSTrickSFX,
+    // playTetrisSFX,
+    // playPlaceSFX,
+  ]);
+  // ----------------------------------------------------------------------------------------------------------------------
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -151,17 +204,25 @@ function App() {
           </>
         ) : (
           <>
+            {gameState.paused ? null : (
+              <Sound
+                url="/sounds/BGM.mp3"
+                playStatus={"PLAYING"}
+                loop
+                volume={10}
+              />
+            )}
             <div className="flex flex-col w-full h-full p-1">
-              <div className="w-full h-[60%] md:h-[85%] p-1">
+              <div className="w-full h-[63%] md:h-[85%] p-1">
                 <GameScreen />
               </div>
-              <div className="md:h-[25%] h-[40%] flex items-center justify-center">
+              <div className="md:h-[25%] h-[30%] flex items-center justify-center">
                 <Controllers>
-                  <div className="w-full h-full grid grid-cols-2">
-                    <nav className="col-span-1 w-2/4 mx-auto relative flex items-center justify-center aspect-square">
+                  <div className="w-full h-full grid grid-cols-2 items-center">
+                    <nav className="col-span-1 w-3/4 mx-auto relative flex items-center justify-center aspect-square">
                       <OPad onClick={handleHardDrop} />
                     </nav>
-                    <nav className="col-span-1 relative flex items-center justify-center w-2/4 mx-auto aspect-square border border-white/5 bg-white/20 rounded-full overflow-hidden">
+                    <nav className="col-span-1 relative flex items-center justify-center md:w-3/4 w-full mx-auto aspect-square border border-white/5 bg-white/20 rounded-full overflow-hidden">
                       <DPad
                         direction="up absolute top-0 rounded-b-full"
                         onClick={handleRotateClick}

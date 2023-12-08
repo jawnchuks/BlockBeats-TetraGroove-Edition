@@ -28,7 +28,7 @@ export const DPad: FC<DPadProps> = ({ direction, onClick, onMouseDown, onMouseUp
 
   return (
     <span
-      className={`bg-white/80 ${direction} text-lg text-black w-[35%] aspect-square rounded shadow-2xl drop-shadow-lg select-none cursor-pointer`}
+      className={`bg-white/80 ${direction} text-lg text-black w-[40%] aspect-square rounded shadow-2xl drop-shadow-lg select-none cursor-pointer`}
       onMouseEnter={handleHover}
       onMouseLeave={handleLeave}
       onClick={handleClick} // Attach onClick handler

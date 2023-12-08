@@ -18,8 +18,8 @@
   "orientation": "portrait",
   "display": "standalone",
   "lang": "en-US",
-  "name": "Tetris_v1",
-  "short_name": "tetris",
+  "name": "Blockbeats: Tetragroove Edition",
+  "short_name": "Blockbeats",
   "start_url": "./",
   "scope": "./",
   "description": "Play tetris game for free"
